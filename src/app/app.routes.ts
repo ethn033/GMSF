@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { NotFoundComponent } from './components/home/not-found/not-found.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
     { 
@@ -11,7 +11,7 @@ export const routes: Routes = [
     },
     {
         path: 'home',
-        component: AppComponent
+        component: HomeComponent
     },
     { path: '**', 
         component: NotFoundComponent
