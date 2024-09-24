@@ -1,32 +1,25 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { DockModule } from 'primeng/dock';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DockModule],
+  imports: [BrowserModule, RouterModule, FormsModule, ButtonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  items = [
-    {
-        label: 'Finder',
-        icon: 'https://primefaces.org/cdn/primeng/images/dock/finder.svg'
-    },
-    {
-        label: 'App Store',
-        icon: 'https://primefaces.org/cdn/primeng/images/dock/appstore.svg'
-    },
-    {
-        label: 'Photos',
-        icon: 'https://primefaces.org/cdn/primeng/images/dock/photos.svg'
-    },
-    {
-        label: 'Trash',
-        icon: 'https://primefaces.org/cdn/primeng/images/dock/trash.png'
-    }
-];
-  title = 'GMSF';
+export class AppComponent implements OnInit {
+ 
+  constructor() {
+
+  }
+  
+  ngOnInit(): void {
+
+  }
 }
