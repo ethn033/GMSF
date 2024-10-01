@@ -9,3 +9,21 @@ body {
     margin: 0px;
     padding: 0px;
 }
+
+a {
+    text-decoration: none !important; /* Remove underline from buttons */
+}
+
+ol,  ul {
+    padding-left: 0px !important;
+}
+
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 0rem !important;
+}
+
+.p-menubar {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
