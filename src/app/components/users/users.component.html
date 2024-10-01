@@ -1,0 +1,31 @@
+<div class="card">
+    <p-table
+    [value]="usersList"
+    [paginator]="true"
+    [rows]="rows"
+    styleClass="p-datatable-striped" 
+    [first]="   "
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    (onPage)="null"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[10, 25, 50]">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:5%">Name</th>
+            <th style="width:5%">Country</th>
+            <th style="width:20%">Company</th>
+            <th style="width:70%">Representative</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+        <tr>
+            <td>{{ user.userId }}</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.title }}</td>
+            <td>{{ user.body }}</td>
+        </tr>
+    </ng-template>
+</p-table>
+</div>
