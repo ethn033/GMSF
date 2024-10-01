@@ -12,21 +12,22 @@ import { TableModule } from 'primeng/table';
 })
 export class UsersComponent implements OnInit{
   
-  constructor(private users: UsersService) {
-    
+  constructor(private usersService: UsersService) {
+    this.usersService.getUsers().subscribe({
+      next: (res) => {
+        this.usersList = res;
+        this.totalRecords = this.usersList.length;
+      }
+    });
   }
   
   first: number = 0;
   rows: number = 10;
   usersList: any[] = [];
   totalRecords: number = 0;
+  
   ngOnInit(): void {
-    this.users.getUsers().subscribe({
-      next: (res) => {
-        this.usersList = res;
-        this.totalRecords = this.usersList.length;
-      }
-    });
+    
   }
   
   next() {
@@ -45,7 +46,6 @@ export class UsersComponent implements OnInit{
     this.first = event.first;
     this.rows = event.rows;
   }
-  
   
   isLastPage(): boolean {
     return this.usersList ? this.first === this.usersList.length - this.rows : true;

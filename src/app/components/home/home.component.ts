@@ -1,22 +1,23 @@
-import { Component } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
-import { InputTextModule } from 'primeng/inputtext';
-import { SideBarComponent } from '../template/side-bar/side-bar.component';
+import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../template/navbar/navbar.component';
 import { UsersComponent } from '../users/users.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [UsersComponent, ButtonModule, DialogModule, InputTextModule, SideBarComponent, NavbarComponent],
+  imports: [UsersComponent, NavbarComponent, DashboardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  visible: boolean = false;
+export class HomeComponent implements OnInit {
+  
+  constructor() {
 
-  showDialog() {
-      this.visible = true;
+  }
+
+  ngOnInit(): void {
+    
   }
 }

@@ -8,7 +8,7 @@
     [showCurrentPageReport]="true"
     [tableStyle]="{ 'min-width': '50rem' }"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    (onPage)="null"
+    (onPage)="pageChange($event)"
     [totalRecords]="totalRecords"
     [rowsPerPageOptions]="[10, 25, 50]">
     <ng-template pTemplate="header">

@@ -9,6 +9,7 @@ html {
 body {
     margin: 0px;
     padding: 0px;
+    background-color: white;
 }
 
 a {
@@ -27,4 +28,7 @@ dl, ol, ul {
 .p-menubar {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
+    background-color: white;
 }
+
+
