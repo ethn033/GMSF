@@ -1,32 +1,29 @@
 <div class="login-container">
-    <div class="login-card">
-      <h2 class="login-title">Login</h2>
-      <form (ngSubmit)="onLogin()" #loginForm="ngForm">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            id="username"
-            type="text"
-            pInputText
-            [(ngModel)]="dto.UserName"
-            name="username"
-            required
-            placeholder="Enter your username"
-          />
+  <div class="login-card">
+    <h2 class="login-title">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label for="UserName">Username</label>
+        <input id="UserName" type="text" pInputText class="w-100" formControlName="UserName" placeholder="Enter your username" minlength="2" maxlength="30" required />
+        <div *ngIf="loginForm.get('UserName').touched && loginForm.get('UserName').invalid">
+          <span class="err" *ngIf="loginForm.get('UserName').errors['required']">Username is required.</span>
+          <span class="err" *ngIf="loginForm.get('UserName').errors['minlength']">Username must be 2 characters long.</span>
+          <span class="err" *ngIf="loginForm.get('UserName').errors['maxlength']">Username must not exceed 30 characters.</span>
         </div>
-        
-        <div class="form-group">
-          <label for="password">Password</label>
-          <p-password
-          id="password"
-          [(ngModel)]="dto.Password"
-          name="password"
-          required [feedback]="false"
-          placeholder="Enter your password"
-          class="full-width-password"/>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input pInputText class="w-100" id="password" type="password" formControlName="Password" placeholder="Enter your password"  minlength="8" maxlength="30" required />
+        <div *ngIf="loginForm.get('Password').touched && loginForm.get('Password').invalid">
+          <span class="err" *ngIf="loginForm.get('Password').errors['required']">Password is required.</span>
+          <span class="err" *ngIf="loginForm.get('Password').errors['minlength']">Password must be 8 characters long.</span>
+          <span class="err" *ngIf="loginForm.get('Password').errors['maxlength']">Password must not exceed 30 characters.</span>
         </div>
-        
-        <p-button label="Submit" class="w-100" [style]="{ 'width' : '100%' }"/>
-      </form>
-    </div>
+      </div>
+      
+      <button pButton pRipple  label="Submit" class="p-button-success" class="w-100" [disabled]="loginForm.invalid"></button>
+
+    </form>
   </div>
+</div>
