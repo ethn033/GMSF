@@ -19,14 +19,7 @@ export class AuthService {
   constructor(private http: HttpClient, private utils: UtilsService) { }
   
   loginUser(dto: Login) : Observable<any> {
-    return this.http.post(`${this.apiUrl}${this.controller}/${this.endPoint}`, dto).pipe(
-      tap((response : any) => {
-        debugger
-        if (response.token) {
-          localStorage.setItem(this.tokenKey, response.token);
-        }
-      })
-    );
+    return this.http.post(`${this.apiUrl}${this.controller}/${this.endPoint}`, dto);
   }
   
   logoutUser(dto: Login) {
