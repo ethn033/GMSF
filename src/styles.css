@@ -1,19 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
-@import "primeicons/primeicons.css";
 
 
 html {
     font-size: 14px;
 }
 
-body {
-    margin: 0px;
-    padding: 0px;
-    background-color: white;
-}
-
 a {
-    text-decoration: none !important; /* Remove underline from buttons */
+    text-decoration: none !important; 
 }
 
 ol,  ul {
@@ -23,12 +15,6 @@ ol,  ul {
 dl, ol, ul {
     margin-top: 0;
     margin-bottom: 0rem !important;
-}
-
-.p-menubar {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    background-color: white;
 }
 
 .err {

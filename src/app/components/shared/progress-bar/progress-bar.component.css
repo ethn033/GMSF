@@ -1,0 +1,9 @@
+.sticky-progress-bar {
+    position: fixed; /* Fixes the element to the viewport */
+    top: 0;         /* Aligns it to the top */
+    left: 0;        /* Aligns it to the left */
+    right: 0;       /* Aligns it to the right */
+    z-index: 9999;  /* Ensures it stays on top of other elements */
+    background-color: white; /* Optional: adds a background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for visibility */
+}
