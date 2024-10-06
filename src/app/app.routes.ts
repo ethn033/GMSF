@@ -3,13 +3,14 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { authGuardGuard } from './guards/auth-guard.guard';
 import { LoginComponent } from './components/auth/login/login.component';
+import { UsersComponent } from './components/users/users.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'home', 
-        pathMatch: 'full',
-        title: 'Home'
+        redirectTo: 'login', 
+        pathMatch: 'full'
     },
     {
         path: 'login',
@@ -17,10 +18,26 @@ export const routes: Routes = [
     },
     {
         canActivate: [authGuardGuard],
-        path: 'home',
-        component: HomeComponent
+        path: '',
+        component: HomeComponent, // HomeComponent serves as the layout
+        children: [
+            {
+                path: 'dashboard',
+                component: DashboardComponent // Component for the dashboard
+            },
+            {
+                path: 'users',
+                component: UsersComponent // UsersComponent
+            },
+            {
+                path: '',
+                redirectTo: 'dashboard', // Default child route
+                pathMatch: 'full'
+            }
+        ]
     },
-    { path: '**', 
-        component: NotFoundComponent
+    { 
+        path: '**', 
+        component: NotFoundComponent 
     }
 ];

@@ -7,6 +7,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import { RippleModule } from 'primeng/ripple';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-navbar',
@@ -15,7 +17,12 @@ import { RippleModule } from 'primeng/ripple';
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.css'
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
+
+    constructor(private auth: AuthService, private router: Router) {
+
+    }
+
     items: MenuItem[] | undefined;
     
     ngOnInit() {
@@ -147,4 +154,10 @@ export class NavbarComponent implements OnInit{
             }
         ];
     }
+    
+    logout() {
+        this.auth.logoutUser();
+        this.router.navigate(['/login'], {replaceUrl: true});
+    }
+
 }

@@ -22,8 +22,8 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}${this.controller}/${this.endPoint}`, dto);
   }
   
-  logoutUser(dto: Login) {
-    this.utils.removeLocalStorage(this.tokenKey);
+  logoutUser() {
+    this.utils.clearLocalStorage();
   } 
   
   isLoggedIn(): boolean {

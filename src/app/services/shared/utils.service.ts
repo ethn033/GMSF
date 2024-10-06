@@ -18,5 +18,9 @@ export class UtilsService {
   removeLocalStorage(key: string) {
     localStorage.removeItem(key);
   }
+
+  clearLocalStorage() {
+    localStorage.clear();
+  }
   
 }

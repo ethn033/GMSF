@@ -1,3 +1,13 @@
-<app-navbar></app-navbar>
-<app-side-bar></app-side-bar>
-<app-dashboard></app-dashboard>
+<div class="row p-0 m-0">
+    <div class="col-12 p-0 m-0">
+        <app-navbar></app-navbar>
+    </div>
+</div>
+<div class="row">
+    <div class="col-2 pe-2 pt-0 m-0">
+        <app-side-bar></app-side-bar>
+    </div>
+    <div class="col-10">
+        <router-outlet></router-outlet>
+    </div>
+</div>
