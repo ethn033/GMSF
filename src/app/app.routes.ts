@@ -19,21 +19,21 @@ export const routes: Routes = [
     {
         canActivate: [authGuardGuard],
         path: '',
-        component: HomeComponent, // HomeComponent serves as the layout
-        children: [
+        component: HomeComponent,
+        children: [ 
+            {
+                path: '',
+                redirectTo: 'dashboard',
+                pathMatch: 'full'
+            },
             {
                 path: 'dashboard',
-                component: DashboardComponent // Component for the dashboard
+                component: DashboardComponent
             },
             {
                 path: 'users',
-                component: UsersComponent // UsersComponent
+                component: UsersComponent
             },
-            {
-                path: '',
-                redirectTo: 'dashboard', // Default child route
-                pathMatch: 'full'
-            }
         ]
     },
     { 

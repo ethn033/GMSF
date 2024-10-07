@@ -1,4 +1,2 @@
-<div class="container-fluid p-0 m-0">
-    <app-progress-bar *ngIf="utils.loading | async" />
-    <router-outlet></router-outlet>
-</div>
+<app-progress-bar *ngIf="utils.loading | async" />
+<router-outlet></router-outlet>
