@@ -1,4 +1,4 @@
-<p-panelMenu [model]="items">
+<p-panelMenu [style]="{'border': 'opx', 'border-radius': '0'}" [model]="items">
     <ng-template pTemplate="item" let-item>
         <ng-container *ngIf="item.route; else urlRef">
             <a [routerLink]="item.route" class="flex align-items-center 
