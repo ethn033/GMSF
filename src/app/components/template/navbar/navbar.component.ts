@@ -1,22 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { AvatarModule } from 'primeng/avatar';
-import { BadgeModule } from 'primeng/badge';
-import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { MenubarModule } from 'primeng/menubar';
 import { RippleModule } from 'primeng/ripple';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { MenuModule } from 'primeng/menu';
+import { InputIconModule } from 'primeng/inputicon';
+import { IconFieldModule } from 'primeng/iconfield';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
-    imports: [InputTextModule, ButtonModule, RippleModule, CommonModule, MenuModule, FormsModule],
+    imports: [InputTextModule, ButtonModule, RippleModule, CommonModule, MenuModule, FormsModule, InputIconModule, IconFieldModule],
     templateUrl: './navbar.component.html',
     styleUrl: './navbar.component.css'
 })

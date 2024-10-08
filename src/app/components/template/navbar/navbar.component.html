@@ -1,19 +1,26 @@
 
-<div class="container-fluid p-0 m-0">
-    <div class="row p-0 m-0">
-        <div class="col-2 p-0 m-0 border-end border-bottom">
+<div class="container-fluid m-0 p-0 bg-white">
+    <div class="row p-0 m-0 border-bottom">
+        <div class="col-2 border-end">
             <span class="inline-flex align-items-center gap-1 px-2 py-2">
                 <i class="pi pi-car" style="font-size: 2rem"></i>
                 <span class="font-medium text-xl font-semibold">GM<span class="text-primary">S</span></span>
             </span>
         </div>
-        <div class="col-8 p-0 border-bottom border-end">
-            <input type="text" class="w-100 h-100 border-0" pInputText placeholder="Search">
+        <div class="col-8 border-end position-relative d-flex align-items-center">
+            <p-iconField iconPosition="left" class="flex-grow-1">
+                <p-inputIcon styleClass="pi pi-search"></p-inputIcon>
+                <input type="text" class="w-100 h-100 border-0" pInputText placeholder="Search" />
+            </p-iconField>
+            <div class="position-absolute end-0 pe-3">
+                <p-inputIcon styleClass="pi pi-spinner pi-spin"></p-inputIcon>
+            </div>
         </div>
-        <div class="col-2 m-0 border-bottom text-center d-flex justify-content-center align-items-center">
-            Welcome, <span class="font-bold"> Ayaz</span>
-            <p-menu #menu [model]="options" [popup]="true" [appendTo]="'body'"></p-menu>
-            <p-button (click)="menu.toggle($event)" icon="pi pi-angle-down" [rounded]="true" [text]="true"></p-button>
+        <div class="col-2 text-center d-flex justify-content-end align-items-center">
+            Welcome, <span class="font-bold ps-1"> Ayaz</span>
+            <p-button icon="pi pi-user" (click)="menu.toggle($event)" class="ms-2" [rounded]="true" severity="info" [outlined]="true" />
+            <p-menu #menu [model]="options" [popup]="true"></p-menu>
         </div>
     </div>
 </div>
+
