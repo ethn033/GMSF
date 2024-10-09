@@ -5,6 +5,7 @@ import { authGuardGuard } from './guards/auth-guard.guard';
 import { LoginComponent } from './components/auth/login/login.component';
 import { UsersComponent } from './components/users/users.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { VehiclesComponent } from './components/vehicles/vehicles.component';
 
 export const routes: Routes = [
     {
@@ -29,6 +30,10 @@ export const routes: Routes = [
             {
                 path: 'dashboard',
                 component: DashboardComponent
+            },
+            {
+                path: 'vehicles',
+                component: VehiclesComponent
             },
             {
                 path: 'users',

@@ -29,6 +29,13 @@ export class SideBarComponent implements OnInit {
                 }
             },
             {
+                label: 'Vehicle',
+                icon: 'pi pi-car',
+                command: () => {
+                    this.router.navigate(['/vehicles']);
+                }
+            },
+            {
                 label: 'Users',
                 icon: 'pi pi-user',
                 command: () => {

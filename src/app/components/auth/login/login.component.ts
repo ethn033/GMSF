@@ -14,12 +14,11 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SubscriptionsService } from '../../../services/subscriptions.service';
-import { RippleModule } from 'primeng/ripple';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, PasswordModule, ButtonModule, RippleModule, InputTextModule, ToastModule],
+  imports: [CommonModule, ReactiveFormsModule, PasswordModule, ButtonModule, InputTextModule, ToastModule],
   providers: [ToastService, MessageService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -31,14 +30,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       UserName: ['', [Validators.required, Validators.maxLength(30), Validators.minLength(2)]],
       Password: ['', [Validators.required, Validators.maxLength(30), Validators.minLength(8)]]
     });
-    
-    if(this.authService.isLoggedIn()) {
-      this.router.navigate(['/dashboard'], {replaceUrl: true});
-    }
   }
   
   ngOnInit(): void {
-    
+    if(this.authService.isLoggedIn()) {
+      this.router.navigate(['/dashboard'], {replaceUrl: true});
+    }
   }
   
   response: Response;
@@ -50,8 +47,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     const sub = this.authService.loginUser(this.loginForm.value).subscribe({
       next: (res) => {
         this.response = res as Response;
-        if(this.response.statusCode === 200 && this.response.data) {
-          this.utils.setLocalStorage(environment.keys.token, this.response.data);
+        if(this.response.statusCode === 200 && this.response.data && this.response.data.token) {
+          this.utils.setLocalStorage(environment.keys.token, this.response.data.token);
+          this.utils.setLocalStorage(environment.keys.userProfile, JSON.stringify(this.response.data.applicationUser));
           this.router.navigate(['/dashboard'], {replaceUrl: true});
           this.toast.showSuccess('Loggedin successfully.');
           return;
@@ -67,7 +65,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.toast.showError('Some error occurred while processing your request.');
       },
     });
-    
     this.sub.addSub(sub);
   }
   

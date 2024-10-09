@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UsersService } from '../../services/users.service';
+import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
 
 @Component({
-  selector: 'app-users',
+  selector: 'app-vehicles',
   standalone: true,
   imports: [TableModule, CommonModule, ButtonModule],
-  templateUrl: './users.component.html',
-  styleUrl: './users.component.css'
+  templateUrl: './vehicles.component.html',
+  styleUrl: './vehicles.component.css'
 })
-export class UsersComponent implements OnInit{
-  
+export class VehiclesComponent {
   constructor(private usersService: UsersService) {
     
   }

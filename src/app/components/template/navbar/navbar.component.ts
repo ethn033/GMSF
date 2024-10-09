@@ -9,6 +9,10 @@ import { MenuModule } from 'primeng/menu';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
 import { ButtonModule } from 'primeng/button';
+import { SubscriptionsService } from '../../../services/subscriptions.service';
+import { UtilsService } from '../../../services/shared/utils.service';
+import { environment } from '../../../../environments/environment';
+import { ApplicationUser } from '../../../models/applicationUser';
 
 @Component({
     selector: 'app-navbar',
@@ -18,7 +22,14 @@ import { ButtonModule } from 'primeng/button';
     styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
-
+    applicationUser: ApplicationUser;
+    constructor(private auth: AuthService, private sub: SubscriptionsService, private router: Router, private utils: UtilsService) {
+        const userProfile = this.utils.getLocalStorage(environment.keys.userProfile);
+        if(userProfile) {
+            this.applicationUser = JSON.parse(userProfile) as ApplicationUser;
+        }
+    }
+    
     options = [
         {
             items: [
@@ -35,10 +46,6 @@ export class NavbarComponent implements OnInit {
             ]
         }
     ];
-
-    constructor(private auth: AuthService, private router: Router) {
-        
-    }
     
     
     
