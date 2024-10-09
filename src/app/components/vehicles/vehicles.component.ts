@@ -21,7 +21,7 @@ export class VehiclesComponent {
   usersList: any[] = [];
   totalRecords: number = 0;
   
-  ngOnInit(): void {
+  ngOnInit() {
     this.usersService.getUsers().subscribe({
       next: (res) => {
         this.usersList = res;

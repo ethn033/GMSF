@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="col-2 text-center d-flex justify-content-end align-items-center">
-            Welcome, <span class="font-bold ps-1"> {{applicationUser.firstName}}</span>
+            Welcome, <span class="font-bold ps-1"> {{applicationUser?.firstName}}</span>
             <p-button icon="pi pi-user" (click)="menu.toggle($event)" class="ms-2" [rounded]="true" severity="info" [outlined]="true" />
             <p-menu #menu [model]="options" [popup]="true"></p-menu>
         </div>

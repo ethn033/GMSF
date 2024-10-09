@@ -22,7 +22,7 @@ import { ApplicationUser } from '../../../models/applicationUser';
     styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
-    applicationUser: ApplicationUser;
+    applicationUser: ApplicationUser = new ApplicationUser();
     constructor(private auth: AuthService, private sub: SubscriptionsService, private router: Router, private utils: UtilsService) {
         const userProfile = this.utils.getLocalStorage(environment.keys.userProfile);
         if(userProfile) {
