@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { Response } from '../../../models/response';
 import { UtilsService } from '../../../services/shared/utils.service';
 import { environment } from '../../../../environments/environment';
-import { ToastService } from '../../../service/toast.service';
+import { ToastService } from '../../../services/toast.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';

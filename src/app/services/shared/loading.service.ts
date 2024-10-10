@@ -10,6 +10,8 @@ export class LoadingService {
     loading = this.progress.asObservable();
 
     showLoading(loading: boolean) : void {
-      this.progress.next(loading);
+      setTimeout(() => {
+        this.progress.next(loading);
+      });
     }
 }

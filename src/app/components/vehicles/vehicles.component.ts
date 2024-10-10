@@ -1,31 +1,43 @@
 import { Component } from '@angular/core';
-import { UsersService } from '../../services/users.service';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
+import { VehiclesService } from '../../services/vehicles.service';
+import { Vehicle } from '../../models/vehicle';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-vehicles',
   standalone: true,
   imports: [TableModule, CommonModule, ButtonModule],
   templateUrl: './vehicles.component.html',
+  providers: [ToastService, MessageService],
   styleUrl: './vehicles.component.css'
 })
 export class VehiclesComponent {
-  constructor(private usersService: UsersService) {
+  constructor(private vehiclesService: VehiclesService, private toast: ToastService) {
     
   }
   
   first: number = 0;
   rows: number = 10;
-  usersList: any[] = [];
   totalRecords: number = 0;
   
+  vehiclesList: Vehicle[] = [];
   ngOnInit() {
-    this.usersService.getUsers().subscribe({
+    this.vehiclesService.getVehicles().subscribe({
       next: (res) => {
-        this.usersList = res;
-        this.totalRecords = this.usersList.length;
+        debugger
+        this.toast.showSuccess('dsfi');
+        this.vehiclesList = res.data as Vehicle[];
+        this.totalRecords = this.vehiclesList.length;
+      },
+      error: (error) => {
+        this.handleError(error);
+        this.vehiclesList = [];
+        this.totalRecords = 0;
       }
     });
   }
@@ -48,11 +60,22 @@ export class VehiclesComponent {
   }
   
   isLastPage(): boolean {
-    return this.usersList ? this.first === this.usersList.length - this.rows : true;
+    return this.vehiclesList ? this.first === this.vehiclesList.length - this.rows : true;
   }
   
   isFirstPage(): boolean {
-    return this.usersList ? this.first === 0 : true;
+    return this.vehiclesList ? this.first === 0 : true;
   }
   
+
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `${error.error.message}`;
+    } 
+    else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    this.toast.showError(errorMessage);
+  }
 }

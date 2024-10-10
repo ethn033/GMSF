@@ -4,5 +4,11 @@ export const environment = {
     keys: {
         token: 'TOKEN',
         userProfile: 'USER_PROFILE'
+    },
+    endpoints: {
+        vehicles: {
+            getVehicles: 'GetVehicles',
+            getVehicleById: 'GetVehicle'
+        }
     }
 };

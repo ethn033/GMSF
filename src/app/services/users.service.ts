@@ -7,13 +7,11 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class UsersService {
-
   apiUrl = environment.apiUrl;
-  controller = 'Auth';
-  endPoint = 'GetAllUsers'
+  controller = environment.endpoints.users.controller;
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}${this.controller}/${this.endPoint}`);
+    return this.http.get<any>(`${this.apiUrl}${this.controller}/${environment.endpoints.users.getAllUsers}`);
   }
 }
