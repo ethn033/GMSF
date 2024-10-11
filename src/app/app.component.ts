@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ProgressBarComponent } from './components/shared/progress-bar/progress-bar.component';
 import { LoadingService } from './services/shared/loading.service';
-import { SubscriptionsService } from './services/subscriptions.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ import { SubscriptionsService } from './services/subscriptions.service';
 export class AppComponent implements OnInit, OnDestroy {
   loading: boolean = false;
 
-  constructor(public utils: LoadingService, private subs: SubscriptionsService) {}
+  constructor(public utils: LoadingService) {}
   
   ngOnInit() {
     const sub = this.utils.loading.subscribe({
@@ -23,10 +23,13 @@ export class AppComponent implements OnInit, OnDestroy {
         this.loading = loading;
       }
     });
-    this.subs.addSub(sub);
+    this.subs.push(sub);
   }
 
+  subs: Subscription[] = [];
   ngOnDestroy(): void {
-    this.subs.destroyAllSub();
+    this.subs.forEach((sub) => {
+      sub.unsubscribe();
+    });
   }
 }

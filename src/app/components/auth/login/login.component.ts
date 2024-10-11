@@ -13,7 +13,7 @@ import { ToastService } from '../../../services/toast.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
-import { SubscriptionsService } from '../../../services/subscriptions.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +25,7 @@ import { SubscriptionsService } from '../../../services/subscriptions.service';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
-  constructor(private sub: SubscriptionsService, private toast: ToastService, private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private utils: UtilsService) {
+  constructor(private toast: ToastService, private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private utils: UtilsService) {
     this.loginForm = this.formBuilder.group({
       UserName: ['', [Validators.required, Validators.maxLength(30), Validators.minLength(2)]],
       Password: ['', [Validators.required, Validators.maxLength(30), Validators.minLength(8)]]
@@ -65,11 +65,14 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.toast.showError('Some error occurred while processing your request.');
       },
     });
-    this.sub.addSub(sub);
+    this.subs.push(sub);
   }
   
+  subs: Subscription[] = [];
   ngOnDestroy(): void {
-    this.sub.destroyAllSub();
+    this.subs.forEach((sub) => {
+      sub.unsubscribe();
+    });
   }
   
 }

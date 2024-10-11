@@ -4,15 +4,15 @@
         <div class="col-2 border-end">
             <span class="inline-flex align-items-center gap-1 px-2 py-2">
                 <i class="pi pi-car" style="font-size: 2rem"></i>
-                <span class="font-medium text-xl font-semibold">GM<span class="text-primary">S</span></span>
+                <span class="font-medium text-xl font-semibold">Garage<span class="text-primary">Management</span></span>
             </span>
         </div>
         <div class="col-8 border-end position-relative d-flex align-items-center">
             <p-iconField iconPosition="left" class="flex-grow-1">
                 <p-inputIcon styleClass="pi pi-search"></p-inputIcon>
-                <input type="text" class="w-100 h-100 border-0" pInputText placeholder="Search" />
+                <input type="text" [formControl]="searchControl" class="w-100 h-100 border-0" pInputText placeholder="Search" />
             </p-iconField>
-            <div class="position-absolute end-0 pe-3">
+            <div class="position-absolute end-0 pe-3" *ngIf="loadSearching">
                 <p-inputIcon styleClass="pi pi-spinner pi-spin"></p-inputIcon>
             </div>
         </div>

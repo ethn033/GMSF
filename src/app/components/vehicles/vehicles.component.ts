@@ -7,11 +7,14 @@ import { Vehicle } from '../../models/vehicle';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { ToastService } from '../../services/toast.service';
+import { FieldsetModule } from 'primeng/fieldset';
+import { DialogModule } from 'primeng/dialog';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-vehicles',
   standalone: true,
-  imports: [TableModule, CommonModule, ButtonModule],
+  imports: [TableModule, CommonModule, ButtonModule, FieldsetModule, DialogModule],
   templateUrl: './vehicles.component.html',
   providers: [ToastService, MessageService],
   styleUrl: './vehicles.component.css'
@@ -21,16 +24,15 @@ export class VehiclesComponent {
     
   }
   
+  visibleModel: boolean = false;
   first: number = 0;
   rows: number = 10;
   totalRecords: number = 0;
   
   vehiclesList: Vehicle[] = [];
   ngOnInit() {
-    this.vehiclesService.getVehicles().subscribe({
+    const sub = this.vehiclesService.getVehicles().subscribe({
       next: (res) => {
-        debugger
-        this.toast.showSuccess('dsfi');
         this.vehiclesList = res.data as Vehicle[];
         this.totalRecords = this.vehiclesList.length;
       },
@@ -40,6 +42,8 @@ export class VehiclesComponent {
         this.totalRecords = 0;
       }
     });
+
+    this.subs.push(sub);
   }
   
   next() {
@@ -77,5 +81,12 @@ export class VehiclesComponent {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     this.toast.showError(errorMessage);
+  }
+
+  subs: Subscription[] = [];
+  ngOnDestroy(): void {
+    this.subs.forEach((sub) => {
+      sub.unsubscribe();
+    });
   }
 }
